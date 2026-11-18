@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#5b3028">
+  <title>A Little Birthday Surprise 💗</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <audio id="bgMusic" loop>
+    <source src="{{ url_for('static', filename='music/song.mp3') }}" type="audio/mpeg">
+</audio>
+
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Play or pause music">
+    ♫ Music
+</button>
+  <!-- PAGE 1: SECRET LOCK -->
+  <section class="page lock-page active" id="lockPage">
+    
+    <div class="lock-card">
+      <div class="photo-frame">
+        <img src="{{ url_for('static', filename='photos/cover.jpg') }}" alt="A cute birthday picture"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+        <div class="photo-fallback" style="display:none">🐱💗</div>
+        <span class="frame-sticker">♡ pookie ♡</span>
+      </div>
+      <p class="eyebrow">a tiny surprise made just for you</p>
+      <h1>Enter the secret code</h1>
+      <p class="soft-text">Only my favourite person knows this one… 🎀</p>
+      <form id="codeForm" class="code-form">
+        <input id="secretCode" type="password" inputmode="numeric" maxlength="2"
+               placeholder="••" autocomplete="off" aria-label="Two digit secret code">
+        <button class="cute-btn pink-btn" type="submit">Unlock ♡</button>
+      </form>
+      <p id="codeError" class="error-message" role="alert"></p>
+      <div class="tiny-hearts">♡　୨୧　♡</div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: CAT QUESTION -->
+  <section class="page question-page" id="questionPage">
+    <div class="question-card">
+      <h1>Do you want to see what I made for you?</h1>
+      <div class="cat-stage">
+        <img src="{{ url_for('static', filename='photos/pookie-cat-flower.png') }}" alt="Pookie cat holding a flower"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="cat-fallback" style="display:none">🐱🌷</div>
+          <span class="sparkle s1">✦</span><span class="sparkle s2">♡</span>
+      </div>
+      <div class="answer-buttons">
+        <button class="cute-btn no-btn" id="noBtn" type="button">No 🙈</button>
+        <button class="cute-btn yes-btn" id="yesBtn" type="button">Yes! 💗</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3: BIRTHDAY INTRO -->
+  <section class="page stripe-page" id="birthdayPage">
+    <div class="intro-card">
+      <p class="eyebrow">today is all about you</p>
+      <h1>Happy Birthday Cutiee! 🎂</h1>
+      <div class="birthday-cat">
+        <img src="{{ url_for('static', filename='photos/birthday-cat.png') }}" alt="Cat wearing a birthday hat"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="cat-fallback" style="display:none">🐱🎉</div>
+      </div>
+      <p class="soft-text">I made a little world of surprises for you.</p>
+      <button class="cute-btn brown-btn" data-go="cautionPage">Next ♡</button>
+    </div>
+  </section>
+
+  <!-- PAGE 4: CAUTION -->
+  <section class="page stripe-page" id="cautionPage">
+    <div class="intro-card">
+      <p class="eyebrow">a very important announcement</p>
+      <h1>Caution! ⚠️</h1>
+      <div class="falling-love">💗　💞　💕<br><span>FALLING IN LOVE</span><br>💕　💗　💘</div>
+      <h2>You might fall in love…</h2>
+      <button class="cute-btn brown-btn" data-go="giftsPage">Next ♡</button>
+    </div>
+  </section>
+
+  <!-- PAGE 5: SEVEN GIFTS -->
+  <section class="page stripe-page" id="giftsPage">
+    <div class="gifts-wrap">
+      <p class="eyebrow">seven little things, made with care</p>
+      <h1>Pick your little surprise 🎁</h1>
+      <div class="gift-grid">
+        <button class="gift-btn" data-gift="gift1"><span>🎬</span><small>Gift 1</small></button>
+        <button class="gift-btn" data-gift="gift2"><span>💌</span><small>Gift 2</small></button>
+        <button class="gift-btn" data-gift="gift3"><span>🌹</span><small>Gift 3</small></button>
+        <button class="gift-btn" data-gift="gift4"><span>📸</span><small>Gift 4</small></button>
+        <button class="gift-btn" data-gift="gift5"><span>💐</span><small>Gift 5</small></button>
+        <button class="gift-btn" data-gift="gift6"><span>🐱</span><small>Gift 6</small></button>
+        <button class="gift-btn last-gift" data-gift="gift7"><span>💍</span><small>Gift 7</small></button>
+      </div>
+      <p class="soft-text">Tap each little gift to open it ♡</p>
+    </div>
+  </section>
+
+  <!-- GIFT 1: THEATRE -->
+  <section class="page gift-page" id="gift1">
+    <div class="gift-card theatre-card">
+      <p class="eyebrow">now showing: the birthday diva</p>
+      <h1>Tonight's Special Screening 🎬</h1>
+      <div class="theatre">
+     <div class="screen-frame">
+    <video autoplay muted loop playsinline controls>
+        <source src="{{ url_for('static', filename='videos/theatre.mp4') }}" type="video/mp4">
+    </video>
+</div>
+        <div class="cat-side">🐱<div class="speech">Wait a second… is that a diva on my screen? Ohkk, it's you diva! 💅💗</div></div>
+      </div>
+      <button class="cute-btn brown-btn back-btn">Back to gifts</button>
+    </div>
+  </section>
+
+  <!-- GIFT 2: LETTER -->
+  <section class="page gift-page" id="gift2">
+    <div class="gift-card letter-card">
+      <p class="eyebrow">a little note for you</p>
+      <h1>To my favourite cutie 💌</h1>
+      <div class="letter-paper">
+        <p>Dear Cutiee,</p>
+        <p>Happy Birthday! I hope your day is filled with the same happiness and warmth that you bring to the people around you. You deserve all the beautiful little things life has to offer.</p>
+        <p>Thank you for being you — for your smile, your silly moments, your kindness and all the memories that make ordinary days feel special. I hope this new year brings you exciting adventures, peaceful days, big achievements and countless reasons to smile.</p>
+        <p>Keep being your lovely, one-of-a-kind self. Today, tomorrow and always, I’m cheering for you. 💗</p>
+        <p class="signature">With lots of care,<br>Your favourite person ♡</p>
+      </div>
+      <button class="cute-btn brown-btn back-btn">Back to gifts</button>
+    </div>
+  </section>
+
+  <!-- GIFT 3: ROSE GARDEN -->
+  <section class="page gift-page" id="gift3">
+    <div class="gift-card">
+      <p class="eyebrow">a garden just for you</p>
+      <h1>A thousand roses 🌹</h1>
+      <div class="garden-layout">
+        <img class="garden-photo" src="{{ url_for('static', filename='photos/rose-garden.jpg') }}" alt="A garden of roses"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+        <div class="garden-fallback" style="display:none">🌹🌷🌹<br>🌷🌹🌷<br>🌹🌷🌹</div>
+        <div class="garden-cat">🐱<div class="speech">A bouquet is not enough for you, so I brought the whole garden for you! 🌸</div></div>
+      </div>
+      <button class="cute-btn brown-btn back-btn">Back to gifts</button>
+    </div>
+  </section>
+
+  
+<!-- GIFT 4: VIDEO GALLERY -->
+<section class="page gift-page" id="gift4">
+  <div class="gift-card">
+    <p class="eyebrow">little moments, lovely memories</p>
+    <h1>My favourite videos 🎬</h1>
+    <p class="gallery-subtitle">Every little moment is special ❤️</p>
+
+    <div class="photo-grid video-grid">
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/photo2.mp4') }}" type="video/mp4">
+      </video>
+
+     <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/photo3.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-0a03a4.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-1cfe9b.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-3c5bb9.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-4d1bcf.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-544511.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-6b3a3a.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-6f9d69.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-8f9640.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-aa3eea.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-b7f134.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-bdfaeb.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-c44b28.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-c4accb.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-d3cbdd.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-ef84db.mp4') }}" type="video/mp4">
+      </video>
+
+      <video autoplay muted loop playsinline>
+        <source src="{{ url_for('static', filename='videos/gift4-f4f66e.mp4') }}" type="video/mp4">
+      </video>
+
+    </div>
+
+    <button class="cute-btn brown-btn back-btn">Back to gifts</button>
+  </div>
+</section>
+
+
+  <!-- GIFT 5: FALLING PHOTOS -->
+ 
+<!-- GIFT 5: 50 REASONS -->
+<section class="page gift-page" id="gift5">
+    <div class="gift-card reasons-card">
+
+        <p class="eyebrow">a little jar full of love</p>
+
+        <h1>50 Reasons You're Special 💗</h1>
+
+        <p class="reasons-intro">
+            A tiny collection of reasons why you're such a wonderful person.
+        </p>
+
+        <div class="love-jar" id="loveJar">
+            <div class="jar-lid"></div>
+            <div class="jar-neck"></div>
+            <div class="jar-body">
+                <div class="jar-heart">♥</div>
+                <div class="jar-label">FOR YOU</div>
+                <div class="jar-notes">💌 💗 💌</div>
+            </div>
+        </div>
+
+        <p class="note-counter" id="noteCounter">0 / 50 notes opened</p>
+
+        <div class="revealed-note" id="revealedNote">
+            <span class="note-heart">💗</span>
+            <p id="reasonText">
+                Your first little surprise is waiting...
+            </p>
+        </div>
+
+        <button class="cute-btn" id="pickNoteBtn" onclick="pickReason()">
+            Pick a Note 💌
+        </button>
+
+        <p class="final-message" id="finalMessage">
+            You deserve all 50 reasons and many more. Happy Birthday! 🎂
+        </p>
+
+        <button class="cute-btn brown-btn back-btn">
+            Back to gifts
+        </button>
+
+    </div>
+</section>
+
+  
+<!-- GIFT 6: LONG MESSAGE + VIDEO -->
+<section class="page gift-page" id="gift6">
+    <div class="gift-card">
+
+        <p class="eyebrow">one more thing I want you to know</p>
+        <h1>For the birthday girl 💗</h1>
+
+        <img class="portrait"
+             src="{{ url_for('static', filename='photos/portrait.jpg') }}"
+             alt="A favourite picture"
+             onerror="this.style.display='none';">
+
+        <div class="long-message">
+            Happy Birthday to someone truly special! I hope you never forget how wonderful you are. Your smile can make a simple moment brighter, and your presence can make an ordinary day memorable. I hope you always find the courage to chase your dreams, the strength to get through difficult days and the happiness of being surrounded by people who appreciate you. May this year bring you new opportunities, beautiful memories, laughter, success and all the little things your heart wishes for. Never stop being curious, kind, confident and wonderfully yourself. You deserve a year as lovely as the happiness you bring into the world. Have the sweetest birthday, cutiee! 🎀
+        </div>
+
+        <h2>A little video surprise for you 🎬</h2>
+
+        <div class="gift6-video">
+            <video id="gift6Video"
+                   autoplay
+                   muted
+                   loop
+                   playsinline
+                   controls
+                   preload="auto">
+
+                <source
+    src="{{ url_for('static', filename='videos/gift6.mp4') }}"
+    type="video/mp4">
+
+                Your browser does not support this video.
+            </video>
+        </div>
+
+        <button class="cute-btn brown-btn back-btn">
+            Back to gifts
+        </button>
+
+    </div>
+</section>
+
+
+  <!-- GIFT 7: SWEET PROPOSAL -->
+ 
+<!-- GIFT 7: FINAL MYSTERY BOX -->
+<section class="page gift-page" id="gift7">
+    <div class="gift-card mystery-card">
+
+        <p class="eyebrow">one last surprise for you</p>
+
+        <h1>The Final Mystery Box 🎁</h1>
+
+        <p class="mystery-intro">
+            You've reached the final surprise...
+            Are you ready to open it? 💗
+        </p>
+
+        <div class="mystery-box" id="mysteryBox">
+            <div class="box-lid">
+                <span>♥</span>
+            </div>
+            <div class="box-body">
+                <div class="box-ribbon"></div>
+                <div class="box-bow">🎀</div>
+            </div>
+        </div>
+
+        <div class="code-area" id="codeArea">
+            <p>Enter our secret code to unlock your surprise 💌</p>
+
+            <input
+                type="password"
+                id="mysteryCode"
+                placeholder="Enter secret code"
+                maxlength="10"
+            >
+
+            <button class="cute-btn" onclick="unlockMystery()">
+                Unlock My Surprise 🔐
+            </button>
+
+            <p id="codeError" class="code-error"></p>
+        </div>
+
+        <div class="mystery-surprise" id="mysterySurprise">
+
+            <h2> SURPRISEEEEE! 💗</h2>
+<div class="surprise-video">
+    <video
+        id="finalBirthdayVideo"
+        playsinline
+        controls
+        preload="auto"
+    >
+        <source
+            src="{{ url_for('static', filename='videos/final-surprise.mp4') }}"
+            type="video/mp4"
+        >
+    </video>
+</div>
+
+            <h2>Happy Birthday, Cutiee! 🎂</h2>
+
+            <div class="final-letter">
+                <p>
+                    I made this little website just to bring a smile
+                    to your face. Every page, every little detail and
+                    every surprise was made with a lot of thought.
+                </p>
+
+                <p>
+                    I hope your birthday is filled with happiness,
+                    laughter and beautiful memories. Never stop
+                    being the wonderful person you are.
+                </p>
+
+                <p>
+                    You deserve countless reasons to smile, today
+                    and every day. Thank you for being YOU. ❤️
+                </p>
+
+                <p class="letter-ending">
+                    With lots of wishes and love,
+                    <br>
+                    Your favourite person 💗
+                </p>
+            </div>
+
+            <div class="final-hearts">💗 💕 💖 💗 💕</div>
+
+        </div>
+
+        <button class="cute-btn brown-btn back-btn">
+            Back to gifts
+        </button>
+
+    </div>
+</section>
+
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
